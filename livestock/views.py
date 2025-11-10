@@ -14,7 +14,7 @@ class LivestockList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Gen
         return self.create(request, *args, **kwargs)
 
 
-class LivestockDetail(mixins.RetriveModelMixin,
+class LivestockDetail(mixins.RetrieveModelMixin,
                       mixins.UpdateModelMixin, 
                       mixins.DestroyModelMixin, 
                       generics.GenericAPIView

@@ -9,7 +9,7 @@ class Livestock(models.Model):
         ('pig', 'Pig'),
         ('poultry', 'Poultry')
     ]
-    owner = models.ForeignKey(CustomUser, on_delete=models.CASACADE)
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     name  = models.CharField(max_length=50)
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES)
     image  = models.ImageField(upload_to='livestock_images/', null=True, blank=True)

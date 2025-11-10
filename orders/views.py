@@ -29,6 +29,6 @@ class MockPaymentAPIView(APIView):
         )
         return Response({
             'message':'payment Done successfully!',
-            'transaction_id': payment.transaction_id
+            'transaction_id': payment.transaction_id,
             'status': payment.status            
         })
