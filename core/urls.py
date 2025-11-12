@@ -27,9 +27,9 @@ schema_view = get_schema_view(
     openapi.Info(
         title="LivestockShop API",
         default_version='v1',
-        descrption="Docummentation for LivestockShop and ednpoints",
+        description="Documentation for LivestockShop and ednpoints",
         terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact("email=kelvinkatwai@gmail.com"),
+        contact=openapi.Contact(email="kelvinkatwai@gmail.com"),
         license=openapi.License(name="BSD License"),
     ),
     public=True,
