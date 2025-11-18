@@ -3,6 +3,6 @@ from .models import Review
 from .serializers import ReviewSerializer
 
 
-class ReviewList(generics.ListCreateAPIView):
+class ReviewListView(generics.CreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer

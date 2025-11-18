@@ -1,11 +1,11 @@
 from rest_framework import generics, permissions, mixins
-from accounts.permissions import IsOwnerOrReadOnly
 from .serializers import LivestockSerializer
 from .models import Livestock
 
 class LivestockList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Livestock.objects.all()
     serializer_class = LivestockSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -22,6 +22,7 @@ class LivestockDetail(mixins.RetrieveModelMixin,
 
     queryset = Livestock.objects.all()
     serializer_class = LivestockSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
