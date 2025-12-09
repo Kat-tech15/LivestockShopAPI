@@ -1,6 +1,7 @@
 from rest_framework import permissions, status, permissions, generics
 from rest_framework.response import Response
 from .serializers import UserSerializer, LoginSerializer, EmptySerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import authenticate
 from rest_framework.decorators import api_view
@@ -32,9 +33,10 @@ class LoginView(generics.GenericAPIView):
         user = authenticate(username=username, password=password)
 
         if user:
-            token,created = Token.objects.get_or_create(user=user)
+            refresh = RefreshToken.for_user(user)
             return Response({
-                'token': token.key,
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
                 'username': user.username,
                 'email': user.email
             })
