@@ -47,8 +47,8 @@ class LogoutView(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
-        if hasattr(request.user, "auth_token"):
-            request.user.auth_token.delete()
+        if hasattr(request.user, "access_token"):
+            request.user.access_token.delete()
             
         return Response({'message': 'User logged out successfully!'}, status=status.HTTP_200_OK)
     
