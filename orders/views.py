@@ -3,18 +3,17 @@ from rest_framework.response import Response
 from .serializers import OrderSerializer
 from rest_framework.views import APIView
 import uuid
-from accounts.permissions import IsOwnerOrReadOnly
 from .models import Order,Payment
 
 class OrderList(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class OrderDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class MockPaymentAPIView(APIView):

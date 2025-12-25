@@ -10,7 +10,7 @@ class Order(models.Model):
     ]
     item = models.ForeignKey(Livestock, on_delete=models.CASCADE)
     buyer = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    quatity = models.IntegerField()
+    quantity = models.IntegerField()
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='pending')
     total_price = models.DecimalField(max_digits=8, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)

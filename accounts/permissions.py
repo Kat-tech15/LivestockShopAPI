@@ -4,4 +4,10 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
     def get_obj_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
             return True
-        return owner.obj == request.user
+        
+        owner = getattr(obj, 'owner', None) or getattr(obj, 'buyer', None)
+
+        if owner is None:
+            return False
+        
+        return owner == request.user

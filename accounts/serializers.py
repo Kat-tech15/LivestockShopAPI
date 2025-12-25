@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import CustomUser
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.authtoken.models import Token
 
 
@@ -13,11 +14,16 @@ class UserSerializer(serializers.ModelSerializer):
     
     def create(request, validated_data):
         user = CustomUser.objects.create_user(
-            username= request.validated_data['username'],
-            email= request.validated_data['email'],
-            password= request.validated_data['password']
+            username= validated_data['username'],
+            email= validated_data['email'],
+            password= validated_data['password']
         )
-        Token.objects.get_or_create(user=user)
+        RefreshToken.for_user(user)
         return user
 
-        
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)
+
+class EmptySerializer(serializers.Serializer):
+    pass
