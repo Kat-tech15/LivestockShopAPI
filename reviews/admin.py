@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import Livestock
+from .models import Review
 
-admin.site.register(Livestock)
+admin.site.register(Review)
